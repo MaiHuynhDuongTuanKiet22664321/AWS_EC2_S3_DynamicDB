@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Product Management</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Edit Product</h2>
+        <br>
+        <form action="/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="old_image_url" value="<%= product.url_image %>">
+            <input type="hidden" name="old_image_key" value="<%= product.image_key %>">
+
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" id="name" name="name" value="<%= product.name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" value="<%= product.price %>" required step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="<%= product.quantity %>" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Current Image:</label>
+                <% if (product.url_image) { %>
+                    <img src="<%= product.url_image %>" alt="<%= product.name %>" class="product-img">
+                <% } else { %>
+                    <p>No image</p>
+                <% } %>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Update Image (Leave blank to keep current):</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <br>
+            <button type="submit" class="btn">Update Product</button>
+            <a href="/" class="btn" style="background-color: #6c757d;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
